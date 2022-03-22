@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div *ngIf="isLoading" style="display: flex; justify-content: center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          ngModel
+          required
+          email
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          ngModel
+          required
+          minlength="6"
+        >
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit" [disabled]="authForm.invalid">{{ submitButtonText }}</button>
+        |
+        <button class="btn btn-info" (click)="onSwitchMode()" type="button">{{ buttonText }}</button>
+      </div>
+    </form>
+    <app-alert *ngIf="hasError" [message]="errorMessage" (hasErrorAlert)="onCloseAlert($event)"></app-alert>
+    <!--    <div *ngIf="hasError" class="alert alert-danger" style="margin-top: 1em">-->
+    <!--      {{errorMessage}}-->
+    <!--    </div>-->
+    <div *ngIf="signUpSuccess || loginSuccess" class="alert alert-success" style="margin-top: 1em">
+      {{successMessage}}
+    </div>
+  </div>
+</div>

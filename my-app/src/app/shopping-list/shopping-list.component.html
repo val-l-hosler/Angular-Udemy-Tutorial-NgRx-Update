@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-list-edit></app-shopping-list-edit>
+    <hr>
+    <!-- In the async pipe, Angular will subscribe to the Observable for us and it will be true/have the array when it resolves. -->
+    <ul class="list-group" *ngIf="ingredients | async">
+      <a
+        routerLink="{{ingredient.name}}"
+        routerLinkActive="active"
+        (click)="onIngredientClick(ingredient)"
+        class="list-group-item"
+        *ngFor="let ingredient of (ingredients | async).ingredients">
+        {{ingredient.name}} ({{ingredient.amount}})
+      </a>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button routerLink="new" class="btn btn-success">New Recipe</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12" *ngIf="parentRecipes | async as parentRecipes; else emptyRecipes">
+    <app-recipe-item *ngFor="let recipe of parentRecipes" [childRecipe]="recipe"></app-recipe-item>
+  </div>
+
+  <ng-template #emptyRecipes><div class="alert alert-info" style="margin: 0 1em 0 1em">There are no recipes. Either fetch the stored recipes or add a new one.</div></ng-template>
+</div>

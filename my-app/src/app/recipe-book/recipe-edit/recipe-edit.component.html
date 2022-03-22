@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2 *ngIf="editMode === false; else editModeH2">Add New Recipe</h2>
+    <ng-template #editModeH2><h2>Edit Recipe</h2></ng-template>
+    <form [formGroup]="thisForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12" style="margin-bottom: 1em">
+          <button type="submit" class="btn btn-success" style="margin-right: 2em" [disabled]="thisForm.invalid">Save
+          </button>
+          <button type="button" class="btn btn-warning" (click)="onCancel()" style="margin-right: 2em">Cancel</button>
+          <button type="button" class="btn btn-danger" *ngIf="editMode" (click)="onDeleteRecipe()">Delete</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" formControlName="name">
+            <span class="help-block" *ngIf="thisForm.get('name').touched && thisForm.get('name').invalid">You must add a name.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" name="imagePath" id="imagePath" class="form-control" formControlName="imageUrl">
+            <span class="help-block" *ngIf="thisForm.get('imageUrl').touched && thisForm.get('imageUrl').invalid">You must add an image url.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12" *ngIf="thisForm.get('imageUrl').valid" style="margin-bottom: 1em">
+          <img [src]="thisForm.get('imageUrl').value" class="img-responsive" alt="">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" name="description" id="description" rows="6" class="form-control"
+                      formControlName="description"></textarea>
+            <span class="help-block" *ngIf="thisForm.get('description').touched && thisForm.get('description').invalid">You must add a description.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredientsArr">
+          <div class="row" style="margin-bottom: 1em; display: flex; align-items: flex-start"
+               *ngFor="let ingredient of controls; let i = index" [formGroupName]="i">
+            <div class="col-xs-8">
+              <label for="ingredientName">Ingredient</label>
+              <input type="text" name="ingredientName" id="ingredientName" class="form-control"
+                     formControlName="name">
+              <span class="help-block" *ngIf="ingredient.get('name').touched && ingredient.get('name').invalid">You must add a name.</span>
+            </div>
+            <div class="col-xs-2">
+              <label for="ingredientAmount">Amount</label>
+              <input type="number" name="ingredientAmount" id="ingredientAmount" class="form-control"
+                     formControlName="amount">
+              <span class="help-block" *ngIf="ingredient.get('amount').touched && ingredient.get('amount').invalid">Inavlid.</span>
+            </div>
+            <div class="col-xs-2">
+              <label style="color: transparent">Delete</label>
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)"
+                      [disabled]="ingredient.invalid">Delete
+              </button>
+            </div>
+          </div>
+
+          <hr>
+
+          <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

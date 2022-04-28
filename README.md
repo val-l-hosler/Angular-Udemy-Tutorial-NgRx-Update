@@ -10,3 +10,10 @@ I followed intricate instructions to complete the recipe app project from the fo
     * Redirected a logged-in user back to their previous page if they refresh the application.
     * Made the edited recipe list persistent over page refreshes for logged-in users.
     * Made the shopping list persistent over page refreshes.
+
+### 🧰 Tech Stack 
+1. Angular 13
+2. RxJS
+3. NgRx
+4. Bootstrap 3
+5. TypeScript

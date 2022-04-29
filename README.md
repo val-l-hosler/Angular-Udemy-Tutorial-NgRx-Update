@@ -1,7 +1,8 @@
 # Angular-udemy-tutorial-2-NgRx-update
 
-I followed intricate instructions to complete the recipe app project from the following [Udemy course](https://www.udemy.com/course/the-complete-guide-to-angular-2/). In addition, I independently completed most of the project before watching the instructor’s solution and implemented the following changes...
+I followed intricate instructions to complete the recipe app project from the following [Udemy course](https://www.udemy.com/course/the-complete-guide-to-angular-2/). 
 
+### :rotating_light: In addition, I independently completed most of the project before watching the instructor’s solution and implemented the following changes... 
 1. Augmented functionality to improve user experience on the following features: login page, shopping list, edit recipe page, and add a new recipe page.
 2. Fixed the following bugs in the instructor’s project:
     * Ensured that the items on the shopping list are unique and the amount is appropriately updated when adding an ingredient.
